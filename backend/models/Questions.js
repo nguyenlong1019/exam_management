@@ -24,7 +24,19 @@ const Question = {
         db.query(sql, [questionId], callback);
     },
 
-    
+    update: (id, question, callback) => {
+        const sql = `UPDATE questions SET question_text = ?, level = ?, subject_id = ?, status = ? WHERE id = ?`;
+        db.query(
+            sql,
+            [question.question_text, question.level, question.subject_id, question.status, id],
+            callback
+        );
+    },
+
+    delete: (id, callback) => {
+        const sql = `DELETE FROM questions WHERE id = ?`;
+        db.query(sql, [id], callback);
+    }
 };  
 
 export default Question;

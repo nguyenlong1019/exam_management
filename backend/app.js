@@ -1,12 +1,20 @@
 import express from "express";
 import cors from "cors";
-import userRoutes from "./routes/userRoutes.js";
+import userRoutes from "./userRoutes.js";
+import auth from "./routes/auth.js";
+import subjectRoutes from "./routes/subjectRoutes.js";
+import questionRoutes from "./routes/questionRoutes.js";
 
 const app = express();
 app.use(express.json())
 app.use(cors());
 
-app.use("/users", userRoutes); // Định tuyến API User
+
+app.use('/api/auth', auth);
+app.use('/api/users', userRoutes);
+app.use('/api/subjects', subjectRoutes);
+app.use('/api/questions', questionRoutes);
+
 
 const PORT = 8888 
 app.listen(PORT, () => {
